@@ -12,24 +12,31 @@ This project is a basic UNIX command line interpreter, a simplified shell implem
 ## Requirements
 ## Allowed Functions and System Calls
 ## Compilation
-<pre><code>bash gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh </code></pre>
+```
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
 ## Testing
 ### Run (interactive mode):
-<pre><code>text julien@ubuntu:/# ./hsh 
-           ($) /bin/ls 
-           hsh main.c shell.c 
-           ($) 
-           ($) exit julien@ubuntu:/# </code></pre>
+```
+julien@ubuntu:/# ./hsh
+($) /bin/ls
+hsh main.c shell.c
+($)
+($) exit
+julien@ubuntu:/#
+```
 ### Run (non-interactive mode):
-<pre><code>console julien@ubuntu:/# echo "/bin/ls" | ./hsh
-                   hsh main.c shell.c test_ls_2 
-                   julien@ubuntu:/# cat test_ls_2 
-                   /bin/ls 
-                   /bin/ls 
-                   julien@ubuntu:/# cat test_ls_2 | ./hsh 
-                   hsh main.c shell.c test_ls_2 
-                   hsh main.c shell.c test_ls_2 
-                   julien@ubuntu:/# </code></pre>
+```
+julien@ubuntu:/# echo "/bin/ls" | ./hsh
+hsh main.c shell.c test_ls_2
+julien@ubuntu:/# cat test_ls_2
+/bin/ls
+/bin/ls
+julien@ubuntu:/# cat test_ls_2 | ./hsh
+hsh main.c shell.c test_ls_2
+hsh main.c shell.c test_ls_2
+julien@ubuntu:/#
+```
 ## Project Tasks
 | Task           | Description                                                                 |
 |----------------|-----------------------------------------------------------------------------|
