@@ -17,10 +17,11 @@ int main(void)
 {
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t bytes_read = 0;
-	char *argv[2];
+	ssize_t bytes_read;
+	char *argv[3];
 	pid_t pid;
 	int status;
+	int argc;
 
 	while (1)
 	{
@@ -30,13 +31,12 @@ int main(void)
 		if (bytes_read == -1)
 			break;
 
-		if (line[bytes_read - 1] == '\n')
+		if (bytes_read > 0 && line[bytes_read - 1] == '\n')
 			line[bytes_read - 1] = '\0';
-		if (line[0] == '\0')
-			continue;
 
-		argv[0] = line;
-		argv[1] = NULL;
+		argc = parse_input(line, argv);
+		if (argc == 0)
+			continue;
 
 		pid = fork();
 		if (pid == -1)
@@ -46,7 +46,7 @@ int main(void)
 		}
 		if (pid == 0)
 		{
-			execute_command(argv);
+			execute_command((char *const *)argv);
 		}
 		else
 		{
