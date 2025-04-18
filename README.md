@@ -10,7 +10,16 @@ This project is a basic UNIX command line interpreter, a simplified shell implem
 * Search and execute commands using the `PATH`
 * Proper error handling and EOF (`Ctrl+D`) support
 ## Requirements
+* Ubuntu 20.04 LTS
+* C compiler: gcc -Wall -Werror -Wextra -pedantic -std=gnu89
+* Follow Betty style guide
+* No more than 5 functions per .c file
+* All header files are include-guarded
+* No unnecessary system calls
+* Shell must not have memory leaks
 ## Allowed Functions and System Calls
+Only standard C functions and a limited set of system calls are permitted, including:  
+`fork`, `execve`, `wait`, `exit`, `read`, `write`, `getline`, `malloc`, `free`, `access`, `stat`, `opendir`, `readdir`, `signal`, `perror`, etc.
 ## Compilation
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
@@ -45,8 +54,7 @@ julien@ubuntu:/#
 |  Shell 0.3     | Search and execute commands using the `PATH`; skip `fork()` if not found.   |
 |  Shell 0.4     | Add support for the built-in command `exit` (no arguments required).        |
 |  Shell 1.0     | Add support for the built-in command `env` to print environment variables.  |
-
-## Testing
-
-
 ## Authors
+Xiaoling Cui
+Faduma Abdihashi 
+Adam Pierzchalski 
