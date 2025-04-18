@@ -55,6 +55,4 @@ julien@ubuntu:/#
 |  Shell 0.4     | Add support for the built-in command `exit` (no arguments required).        |
 |  Shell 1.0     | Add support for the built-in command `env` to print environment variables.  |
 ## Authors
-Xiaoling Cui
-Faduma Abdihashi 
-Adam Pierzchalski 
+Xiaoling Cui, Faduma Abdihashi, Adam Pierzchalski 
