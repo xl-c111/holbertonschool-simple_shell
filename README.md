@@ -11,13 +11,25 @@ This project is a basic UNIX command line interpreter, a simplified shell implem
 * Proper error handling and EOF (`Ctrl+D`) support
 ## Requirements
 ## Allowed Functions and System Calls
-## Usage
-### Compile:
-<pre><code>```bash gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh ```</code></pre>
+## Compilation
+<pre><code>bash gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh </code></pre>
+## Testing
 ### Run (interactive mode):
-<pre><code>```text julien@ubuntu:/# ./hsh ($) /bin/ls hsh main.c shell.c ($) ($) exit julien@ubuntu:/# ```</code></pre>
+<pre><code>text julien@ubuntu:/# ./hsh 
+           ($) /bin/ls 
+           hsh main.c shell.c 
+           ($) 
+           ($) exit julien@ubuntu:/# </code></pre>
 ### Run (non-interactive mode):
-<pre><code>```console julien@ubuntu:/# echo "/bin/ls" | ./hsh hsh main.c shell.c test_ls_2 julien@ubuntu:/# cat test_ls_2 /bin/ls /bin/ls julien@ubuntu:/# cat test_ls_2 | ./hsh hsh main.c shell.c test_ls_2 hsh main.c shell.c test_ls_2 julien@ubuntu:/# ```</code></pre>
+<pre><code>console julien@ubuntu:/# echo "/bin/ls" | ./hsh
+                   hsh main.c shell.c test_ls_2 
+                   julien@ubuntu:/# cat test_ls_2 
+                   /bin/ls 
+                   /bin/ls 
+                   julien@ubuntu:/# cat test_ls_2 | ./hsh 
+                   hsh main.c shell.c test_ls_2 
+                   hsh main.c shell.c test_ls_2 
+                   julien@ubuntu:/# </code></pre>
 ## Project Tasks
 | Task           | Description                                                                 |
 |----------------|-----------------------------------------------------------------------------|
