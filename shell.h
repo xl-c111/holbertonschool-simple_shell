@@ -10,6 +10,6 @@ void print_prompt(void);
 void execute_command(char *const argv[]);
 
 /* parse_input.c */
-int parse_input(char *line, char *argv[]);
+int parse_line(char *line, char *argv[]);
 
 #endif

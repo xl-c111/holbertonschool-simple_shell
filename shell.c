@@ -34,7 +34,7 @@ int main(void)
 		if (bytes_read > 0 && line[bytes_read - 1] == '\n')
 			line[bytes_read - 1] = '\0';
 
-		argc = parse_input(line, argv);
+		argc = parse_line(line, argv);
 		if (argc == 0)
 			continue;
 
