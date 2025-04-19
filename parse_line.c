@@ -2,10 +2,10 @@
 #include "shell.h"
 
 /**
- * parse_line - trim whitespace and split into command + optional arg
+ * parse_line - trim whitespace and split into command + optional arguments
  * @line: input buffer (modified in place)
- * @argv: out array, must have room for at least 3 pointers
- * Return: number of tokens (0, 1 or 2)
+ * @argv: output array,  should have room for at least 2 pointers
+ * Return: number of tokens (0, 1)
  */
 int parse_line(char *line, char *argv[])
 {
