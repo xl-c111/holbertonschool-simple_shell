@@ -2,10 +2,11 @@
 #include "shell.h"
 
 /**
- * parse_line - extracts only the first word(command) from input
+ * parse_line - parse the input line into command and its arguments
  * @line: input buffer (modified in place)
- * @argv: output array,  should have room for at least 2 pointers
- * Return: number of tokens (0, 1)
+ * @argv: output array,  should have space for at least MAX_ARGS pointers
+ * Return: number of tokens parsed
+ *         0 if line is empty or contains only whitespace
  */
 int parse_line(char *line, char *argv[])
 {
