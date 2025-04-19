@@ -18,7 +18,7 @@ int main(void)
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t bytes_read;
-	char *argv[3];
+	char *argv[MAX_ARGS];
 	pid_t pid;
 	int status;
 	int argc;

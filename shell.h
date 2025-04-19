@@ -1,6 +1,8 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+#define MAX_ARGS 64
+
 extern char **environ;
 
 /* prompt.c */

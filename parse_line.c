@@ -13,9 +13,10 @@ int parse_line(char *line, char *argv[])
 	char *token;
 
 	token = strtok(line, " \t");
-	if (token != NULL)
+	while (token != NULL && count <  MAX_ARGS - 1)
 	{
 		argv[count++] = token;
+		token = strtok(NULL, " \t");
 	}
 
 	argv[count] = NULL;
