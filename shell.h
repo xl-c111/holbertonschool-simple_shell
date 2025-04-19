@@ -9,7 +9,7 @@ void print_prompt(void);
 /* execve.c */
 void execute_command(char *const argv[]);
 
-/* parse_input.c */
+/* parse_line.c */
 int parse_line(char *line, char *argv[]);
 
 #endif
