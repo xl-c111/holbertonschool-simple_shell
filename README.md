@@ -1,4 +1,5 @@
 # C - Simple Shell
+## Description
 This project is a basic UNIX command line interpreter, a simplified shell implementation written in C. It mimics the core behavior of `/bin/sh`, allowing users to execute commands in both interactive and non-interactive environments.
 ## Features
 * Display prompt and execute commands
@@ -9,6 +10,14 @@ This project is a basic UNIX command line interpreter, a simplified shell implem
     * `env`
 * Search and execute commands using the `PATH`
 * Proper error handling and EOF (`Ctrl+D`) support
+## Project Tasks
+| Task           | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+|  Shell 0.1     | Display a prompt and execute basic one-word commands with no arguments.     |
+|  Shell 0.2     | Extend to support commands with arguments.                                  |
+|  Shell 0.3     | Search and execute commands using the `PATH`; skip `fork()` if not found.   |
+|  Shell 0.4     | Add support for the built-in command `exit` (no arguments required).        |
+|  Shell 1.0     | Add support for the built-in command `env` to print environment variables.  |
 ## Requirements
 * Ubuntu 20.04 LTS
 * C compiler: gcc -Wall -Werror -Wextra -pedantic -std=gnu89
@@ -46,13 +55,15 @@ hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 julien@ubuntu:/#
 ```
-## Project Tasks
-| Task           | Description                                                                 |
-|----------------|-----------------------------------------------------------------------------|
-|  Shell 0.1     | Display a prompt and execute basic one-word commands with no arguments.     |
-|  Shell 0.2     | Extend to support commands with arguments.                                  |
-|  Shell 0.3     | Search and execute commands using the `PATH`; skip `fork()` if not found.   |
-|  Shell 0.4     | Add support for the built-in command `exit` (no arguments required).        |
-|  Shell 1.0     | Add support for the built-in command `env` to print environment variables.  |
+## File Structure
+| File             | Description                               |
+|------------------|-------------------------------------------|
+| `shell.c`        | Main shell loop, handles input + dispatch |
+| `prompt.c`       | Handles printing the shell prompt         |
+| `parse_line.c`   | Tokenizes input line into arguments       |
+| `execve.c`       | Forks and executes external commands      |
+| `shell.h`        | Header file containing prototypes & macros|
+| `README.md`      | Project documentation                     |
+| `AUTHORS`        | A full list of contributors               |
 ## Authors
 Xiaoling Cui, Faduma Abdihashi, Adam Pierzchalski 
