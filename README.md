@@ -56,14 +56,14 @@ hsh main.c shell.c test_ls_2
 julien@ubuntu:/#
 ```
 ## File Structure
-| File             | Description                               |
-|------------------|-------------------------------------------|
-| `shell.c`        | Main shell loop, handles input + dispatch |
-| `prompt.c`       | Handles printing the shell prompt         |
-| `parse_line.c`   | Tokenizes input line into arguments       |
-| `execve.c`       | Forks and executes external commands      |
-| `shell.h`        | Header file containing prototypes & macros|
-| `README.md`      | Project documentation                     |
-| `AUTHORS`        | A full list of contributors               |
+| File                 | Description                               |
+|----------------------|-------------------------------------------|
+| `shell.c`            | Main shell loop, handles input + dispatch |
+| `print_prompt.c`     | Handles printing the shell prompt         |
+| `execute_command.c`  | Forks and executes external commands      |
+| `parse_line.c`       | Tokenizes input line into arguments       |
+| `shell.h`            | Header file containing prototypes & macros|
+| `README.md`          | Project documentation                     |
+| `AUTHORS`            | A full list of contributors               |
 ## Authors
 Xiaoling Cui, Faduma Abdihashi, Adam Pierzchalski 
