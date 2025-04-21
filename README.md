@@ -60,7 +60,7 @@ julien@ubuntu:/#
 |----------------------|-------------------------------------------|
 | `shell.c`            | Main shell loop, handles input + dispatch |
 | `print_prompt.c`     | Handles printing the shell prompt         |
-| `execute_command.c`  | Forks and executes external commands      |
+| `execute_command.c`  | Executes external commands                |
 | `parse_line.c`       | Tokenizes input line into arguments       |
 | `shell.h`            | Header file containing prototypes & macros|
 | `README.md`          | Project documentation                     |
