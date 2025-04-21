@@ -5,8 +5,9 @@
 
 
 /**
- * execute_command - utility for execve that prints an error if exec fails
- * @argv: a poniter to array of string
+ * execute_command - execute a command using execve that prints an error
+ *                   message and exits if the command fails
+ * @argv: a pointer to an array of strings
  */
 void execute_command(char *const argv[])
 {
