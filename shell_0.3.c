@@ -47,7 +47,10 @@ int main(void)
 			continue;
 		}
 		fork_wait_execve(argv, command_path, &raw_status);
-		status = WEXITSTATUS(raw_status);
+		if (WIFEXITED(raw_status))
+			status = WEXITSTATUS(raw_status);
+		else
+			status = 1;
 	}
 	free(line);
 

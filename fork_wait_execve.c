@@ -32,12 +32,9 @@ void fork_wait_execve(char *argv[], char *command_path, int *raw_status)
 
 	if (pid == 0)
 	{
-		argv[0] = strdup(command_path);
-		if (execve(argv[0], argv, environ) == -1)
-		{
-			perror(argv[0]);
-			exit(EXIT_FAILURE);
-		}
+		execve(command_path, argv, environ);
+		perror(command_path);
+		exit(127);
 	}
 	else
 	{
