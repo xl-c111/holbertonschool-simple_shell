@@ -2,35 +2,35 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #include "shell.h"
 #include <errno.h>
 /**
  * find_path - find executable file for a given command in the
  *             directories listed in PATH
  * @command: pointer to the command-line argument
- *
  * Return: a pointer to string containing fullpath to the executable
  *         ot NULL if no command found or an error occurs
  */
 char *find_path(const char *command)
 {
 	char *env_path, *copy_path, *token, *fullpath;
-	size_t len;
 
 	if (command == NULL || *command == '\0')
 		return (NULL);
 
 	if (strchr(command, '/'))
-		return (access(command, X_OK) == 0 ? strdup(command) : NULL);
-
+	{
+		if (access(command, X_OK) == 0)
+			return (strdup(command));
+		fprintf(stderr, "./hsh: 1: %s: not found\n", command);
+		return (NULL);
+	}
 	env_path = _getenv("PATH");
 	if (env_path == NULL || *env_path == '\0')
 	{
 		fprintf(stderr, "./hsh: 1: %s: not found\n", command);
 		return (NULL);
 	}
-
 	copy_path = strdup(env_path);
 	if (copy_path == NULL)
 	{
@@ -41,24 +41,16 @@ char *find_path(const char *command)
 	token = strtok(copy_path, ":");
 	while (token != NULL)
 	{
-		len = strlen(token) + strlen(command) + 2;
-		fullpath = malloc(len);
+		fullpath = build_full_path(token, command);
 
-		if (fullpath == NULL)
-		{
-			perror("malloc");
-			return (NULL);
-		}
-		snprintf(fullpath, len, "%s/%s", token, command);
-
-		if (access(fullpath, X_OK) == 0)
+		if (fullpath)
 		{
 			free(copy_path);
 			return (fullpath);
 		}
-		free(fullpath);
 		token = strtok(NULL, ":");
 	}
+	fprintf(stderr, "./hsh: 1: %s: not found\n", command);
 	free(copy_path);
 	return (NULL);
 }

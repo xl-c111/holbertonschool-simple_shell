@@ -15,4 +15,7 @@ int parse_line(char *line, char *argv[]);
 
 char *find_path(const char *command);
 
+char *build_full_path(const char *dir, const char *command);
+
+
 #endif
