@@ -13,6 +13,9 @@ char *_getenv(const char *name)
 	int i = 0;
 	int len = strlen(name);
 
+	if (name == NULL)
+		return (NULL);
+
 	while (environ[i] != NULL)
 	{
 		if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')

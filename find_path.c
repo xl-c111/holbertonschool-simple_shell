@@ -30,19 +30,14 @@ char *find_path(const char *command)
 		fprintf(stderr, "./hsh: 1: %s: not found\n", command);
 		return (NULL);
 	}
-	
+
 	copy_path = strdup(env_path);
 	if (copy_path == NULL)
 	{
 		perror("strdup");
+		free(copy_path);
 		return (NULL);
 	}
-	if (env_path == NULL || copy_path == NULL)
-        {
-                fprintf(stderr, "./hsh: 1: %s: not found\n", command);
-                free(copy_path);
-                return (NULL);
-        }
 	token = strtok(copy_path, ":");
 	while (token != NULL)
 	{

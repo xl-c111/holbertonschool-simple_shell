@@ -51,5 +51,5 @@ int main(void)
 		free(command_path);
 	}
 	free(line);
-	return (EXIT_SUCCESS);
+	return (status);
 }

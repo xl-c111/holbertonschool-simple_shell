@@ -13,7 +13,7 @@ void execute_command(char *const argv[])
 {
 	if (execve(argv[0], argv, environ) == -1)
 	{
-		perror(argv[0]);
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
+		exit(127);
 	}
 }
