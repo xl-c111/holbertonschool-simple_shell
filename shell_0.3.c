@@ -32,7 +32,7 @@ int main(void)
 		command_path = find_path(argv[0]);
 		if (command_path == NULL)
 		{
-			perror("find_path");
+			status = 127;
 			continue;
 		}
 		pid = fork();

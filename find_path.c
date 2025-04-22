@@ -25,13 +25,24 @@ char *find_path(const char *command)
 		return (access(command, X_OK) == 0 ? strdup(command) : NULL);
 
 	env_path = _getenv("PATH");
-	copy_path = strdup(env_path);
-	if (env_path == NULL || copy_path == NULL)
+	if (env_path == NULL || *env_path == '\0')
 	{
 		fprintf(stderr, "./hsh: 1: %s: not found\n", command);
-		free(copy_path);
 		return (NULL);
 	}
+	
+	copy_path = strdup(env_path);
+	if (copy_path == NULL)
+	{
+		perror("strdup");
+		return (NULL);
+	}
+	if (env_path == NULL || copy_path == NULL)
+        {
+                fprintf(stderr, "./hsh: 1: %s: not found\n", command);
+                free(copy_path);
+                return (NULL);
+        }
 	token = strtok(copy_path, ":");
 	while (token != NULL)
 	{
