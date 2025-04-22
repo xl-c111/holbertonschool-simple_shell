@@ -12,7 +12,6 @@
  */
 int handle_builtin(char *argv[])
 {
-	int i;
 
 	if (argv == NULL)
 		return (0);
@@ -20,11 +19,5 @@ int handle_builtin(char *argv[])
 	if (strcmp(argv[0], "exit") == 0)
 		return (1);
 
-	if (strcmp(argv[0], "env") == 0)
-	{
-		for (i = 0; environ[i] != NULL; i++)
-			printf("%s\n", environ[i]);
-		return (0);
-	}
 	return (0);
 }
