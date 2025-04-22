@@ -17,7 +17,7 @@ int main(void)
 	char *line = NULL, *argv[MAX_ARGS], *command_path;
 	size_t len = 0;
 	ssize_t bytes_read;
-	int status, argc;
+	int status, argc, raw_status;
 
 	while (1)
 	{
@@ -46,7 +46,8 @@ int main(void)
 			status = 127;
 			continue;
 		}
-		fork_wait_execve(argv, command_path);
+		fork_wait_execve(argv, command_path, &raw_status);
+		status = WEXITSTATUS(raw_status);
 	}
 	free(line);
 

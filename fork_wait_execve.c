@@ -10,16 +10,16 @@
  * fork_wait_execve - forks a child process to execute external commands
  * @argv: array of strings representing command and its arguments
  * @command_path: full path to the command
+ * @raw_status: a pointer to the raw exit status of the child process
  *
  * Return: in the child process, does not return if execve succeeds
  *         if execve fails, it prints an error and exits
  *         in the parent process, it wait for the child process to finish
  */
 
-void fork_wait_execve(char *argv[], char *command_path)
+void fork_wait_execve(char *argv[], char *command_path, int *raw_status)
 {
 	pid_t pid;
-	int status;
 
 	pid = fork();
 
@@ -41,7 +41,7 @@ void fork_wait_execve(char *argv[], char *command_path)
 	}
 	else
 	{
-		waitpid(pid, &status, 0);
+		waitpid(pid, raw_status, 0);
 		free(command_path);
 	}
 }

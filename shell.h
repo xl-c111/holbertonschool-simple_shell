@@ -9,7 +9,7 @@ void print_prompt(void);
 
 char *_getenv(const char *name);
 
-void fork_wait_execve(char *argv[], char *command_path);
+void fork_wait_execve(char *argv[], char *command_path, int *raw_status);
 
 int parse_line(char *line, char *argv[]);
 
