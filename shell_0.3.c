@@ -35,7 +35,10 @@ int main(void)
 		if (argc == 0)
 			continue;
 		if (strcmp(argv[0], "exit") == 0)
+		{
+			free(line);
 			exit(last_status);
+		}
 		command_path = find_path(argv[0]);
 		if (command_path == NULL)
 		{
