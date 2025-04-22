@@ -32,6 +32,9 @@ int main(void)
 		if (argc == 0)
 			continue;
 
+		if (handle_builtin(argv))
+			break;
+
 		command_path = find_path(argv[0]);
 		if (command_path == NULL)
 		{
