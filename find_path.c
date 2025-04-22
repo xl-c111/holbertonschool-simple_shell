@@ -28,7 +28,7 @@ char *find_path(const char *command)
 	copy_path = strdup(env_path);
 	if (env_path == NULL || copy_path == NULL)
 	{
-		perror("PATH");
+		fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
 		free(copy_path);
 		return (NULL);
 	}
