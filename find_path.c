@@ -24,7 +24,7 @@ char *find_path(const char *command)
 	if (strchr(command, '/'))
 		return (access(command, X_OK) == 0 ? strdup(command) : NULL);
 
-	env_path = getenv("PATH");
+	env_path = _getenv("PATH");
 	copy_path = strdup(env_path);
 	if (env_path == NULL || copy_path == NULL)
 	{

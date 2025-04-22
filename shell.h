@@ -5,11 +5,12 @@
 
 extern char **environ;
 
-/* prompt.c */
 void print_prompt(void);
 
+char *_getenv(const char *name);
+
 void execute_command(char *const argv[]);
-/* parse_line.c */
+
 int parse_line(char *line, char *argv[]);
 
 char *find_path(const char *command);
