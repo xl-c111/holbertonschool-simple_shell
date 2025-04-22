@@ -27,18 +27,13 @@ int main(void)
 		bytes_read = getline(&line, &len, stdin);
 		if (bytes_read == -1)
 			break;
-
 		if (bytes_read > 0 && line[bytes_read - 1] == '\n')
 			line[bytes_read - 1] = '\0';
-
 		argc = parse_line(line, argv);
 		if (argc == 0)
 			continue;
-		if (strcmp(argv[0], "exit") == 0)
-		{
-			free(line);
-			exit(last_status);
-		}
+		if (handle_builtin(argv, line, last_status))
+			continue;
 		command_path = find_path(argv[0]);
 		if (command_path == NULL)
 		{
@@ -48,6 +43,8 @@ int main(void)
 		}
 
 		fork_wait_execve(argv, command_path, &raw_status);
+		free(command_path);
+
 		if (WIFEXITED(raw_status))
 			status = WEXITSTATUS(raw_status);
 		else

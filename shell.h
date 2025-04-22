@@ -17,6 +17,7 @@ char *find_path(const char *command);
 
 char *build_full_path(const char *dir, const char *command);
 
-int handle_builtin(char *argv[], int status);
+int handle_builtin(char **argv, char *line, int last_status);
+
 
 #endif
