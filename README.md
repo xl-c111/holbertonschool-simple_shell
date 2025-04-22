@@ -1,15 +1,16 @@
 # C - Simple Shell
 ## Description
-This project is a basic UNIX command line interpreter, a simplified shell implementation written in C. It mimics the core behavior of `/bin/sh`, allowing users to execute commands in both interactive and non-interactive environments.
+**hsh** is a simple UNIX command line interpreter written in C.  
+It mimics the core behavior of `/bin/sh`, allowing users to execute commands in both interactive and non-interactive environments.
 ## Features
-* Display prompt and execute commands
-* Handle command lines with or without arguments
-* Handle non-interactive mode via piping or redirection
-* Support for built-ins:
-    * `exit`
-    * `env`
-* Search and execute commands using the `PATH`
-* Proper error handling and EOF (`Ctrl+D`) support
+* **Displays** a shell prompt and executes user commands  
+* **Parses and handles** command lines with or without arguments  
+* **Supports non-interactive mode**, including piping and file redirection  
+* **Implements built-in commands**:
+  * `exit` – exits the shell
+  * `env` – prints the current environment
+* **Searches for and executes commands** using the `PATH` environment variable  
+* **Handles errors properly** and supports EOF (e.g., `Ctrl+D`)
 ## Project Tasks
 | Task           | Description                                                                 |
 |----------------|-----------------------------------------------------------------------------|
@@ -55,15 +56,21 @@ hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 julien@ubuntu:/#
 ```
+## Exit Status
+* Returns `0` if a command executes successfully
+* Returns a non-zero value if an error occurs during command execution or built-in handling
 ## File Structure
-| File                 | Description                               |
-|----------------------|-------------------------------------------|
-| `shell.c`            | Main shell loop, handles input + dispatch |
-| `print_prompt.c`     | Handles printing the shell prompt         |
-| `execute_command.c`  | Executes external commands                |
-| `parse_line.c`       | Tokenizes input line into arguments       |
-| `shell.h`            | Header file containing prototypes & macros|
-| `README.md`          | Project documentation                     |
-| `AUTHORS`            | A full list of contributors               |
+| File                   | Description                                                                    |
+|------------------------|--------------------------------------------------------------------------------|
+| `simple_shell.c`       | Main shell loop: handles user input, built-in commands, and external execution |
+| `print_prompt.c`       | Prints the shell prompt when in interactive mode                               |
+| `fork_wait_execve.c`   | Forks and executes external commands using `execve()`                          |
+| `parse_line.c`         | Tokenizes the input line into arguments                                        |
+| `handle_builtin.c`     | Implements built-in commands: `exit` and `env`                                 |
+| `find_path.c`          | Searches for a command in directories listed in the `PATH` environment variable|
+| `shell.h`              | Header file containing function prototypes and macros                          |
+| `README.md`            | Project overview and usage instructions                                        |
+| `AUTHORS`              | List of project contributors                                                   |
+
 ## Authors
 Xiaoling Cui, Faduma Abdihashi, Adam Pierzchalski 
