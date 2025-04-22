@@ -4,7 +4,7 @@
 
 /**
  * handle_builtin - checks and hnadles built-in commands: exit and env
- * @argv: array of command arguments
+ * @argv: array of arguments strings
  *
  * Return: 1 if the built-in command is "exit" and shell should exit
  *         otherwise 0 (including built-in command "env" is executed)

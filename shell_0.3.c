@@ -8,7 +8,9 @@
 #include "shell.h"
 /**
  * main - entry point for the simple_shell program
- * Return: EXIT_SUCCESS on normal shell exit
+ * Return: - 127 if command was not found
+ *         - 0 if exited via the built-in 'exit' command without error
+ *         - or the exit status of the last executed command
  */
 int main(void)
 {
@@ -33,7 +35,10 @@ int main(void)
 			continue;
 
 		if (handle_builtin(argv))
+		{
+			status = 0;
 			break;
+		}
 
 		command_path = find_path(argv[0]);
 		if (command_path == NULL)
