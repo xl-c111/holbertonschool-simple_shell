@@ -17,7 +17,8 @@ int main(void)
 	char *line = NULL, *argv[MAX_ARGS], *command_path;
 	size_t len = 0;
 	ssize_t bytes_read;
-	int status, argc, raw_status;
+	int status = 0, last_status = 0;
+	int argc, raw_status;
 
 	while (1)
 	{
@@ -33,25 +34,23 @@ int main(void)
 		argc = parse_line(line, argv);
 		if (argc == 0)
 			continue;
-
-		if (handle_builtin(argv))
-		{
-			exit(status);
-		}
-
+		if (strcmp(argv[0], "exit") == 0)
+			exit(last_status);
 		command_path = find_path(argv[0]);
 		if (command_path == NULL)
 		{
 			status = 127;
+			last_status = status;
 			continue;
 		}
+
 		fork_wait_execve(argv, command_path, &raw_status);
 		if (WIFEXITED(raw_status))
 			status = WEXITSTATUS(raw_status);
 		else
 			status = 1;
+		last_status = status;
 	}
 	free(line);
-
-	return (status);
+	return (last_status);
 }
