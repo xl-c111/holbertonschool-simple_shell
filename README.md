@@ -66,8 +66,10 @@ julien@ubuntu:/#
 | `print_prompt.c`       | Prints the shell prompt when in interactive mode                               |
 | `fork_wait_execve.c`   | Forks and executes external commands using `execve()`                          |
 | `parse_line.c`         | Tokenizes the input line into arguments                                        |
-| `handle_builtin.c`     | Implements built-in commands: `exit` and `env`                                 |
+| `_getenv.c`            | Gets the value of an environment variable                                      |
 | `find_path.c`          | Searches for a command in directories listed in the `PATH` environment variable|
+| `build_full_path.c`    | Constructs full path to a command in a given directory                         |
+| `handle_builtin.c`     | Implements built-in commands: `exit` and `env`                                 |
 | `shell.h`              | Header file containing function prototypes and macros                          |
 | `README.md`            | Project overview and usage instructions                                        |
 | `AUTHORS`              | List of project contributors                                                   |
