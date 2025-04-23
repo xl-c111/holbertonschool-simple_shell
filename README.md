@@ -62,19 +62,20 @@ julien@ubuntu:/#
 * Returns `1` if a command fails abnormally
 * Returns the exit status of the last executed command
 ## File Structure
-| File                   | Description                                                                    |
-|------------------------|--------------------------------------------------------------------------------|
-| `simple_shell.c`       | Main shell loop: handles user input, built-in commands, and external execution |
-| `print_prompt.c`       | Prints the shell prompt when in interactive mode                               |
-| `fork_wait_execve.c`   | Forks and executes external commands using `execve()`                          |
-| `parse_line.c`         | Tokenizes the input line into arguments                                        |
-| `_getenv.c`            | Gets the value of an environment variable                                      |
-| `find_path.c`          | Searches for a command in directories listed in the `PATH` environment variable|
-| `build_full_path.c`    | Constructs full path to a command in a given directory                         |
-| `handle_builtin.c`     | Implements built-in commands: `exit` and `env`                                 |
-| `shell.h`              | Header file containing function prototypes and macros                          |
-| `README.md`            | Project overview and usage instructions                                        |
-| `AUTHORS`              | List of project contributors                                                   |
+| File                   | Description                                                                                |
+|------------------------|--------------------------------------------------------------------------------------------|
+| `simple_shell.c`       | Main shell loop: handles user input, built-in commands, and external execution             |
+| `print_prompt.c`       | Prints the shell prompt when in interactive mode                                           |
+| `fork_wait_execve.c`   | Forks and executes external commands using `execve()`                                      |
+| `parse_line.c`         | Tokenizes the input line into arguments                                                    |
+| `_getenv.c`            | Gets the value of an environment variable                                                  |
+| `find_path.c`          | Searches for a command in directories listed in the `PATH` environment variable            |
+| `build_full_path.c`    | Constructs full path to a command in a given directory                                     |
+| `handle_builtin.c`     | Implements built-in commands: `exit` and `env`                                             |
+| `shell.h`              | Header file containing function prototypes and macros                                      | 
+| `README.md`            | Project overview and usage instructions                                                    |
+| `man_1_simple_shell`   | Manual page file describing usage, features, and behavior of the shell in Unix `man` format|
+| `AUTHORS`              | List of project contributors                                                               |
 
 ## Authors
 Xiaoling Cui, Faduma Abdihashi, Adam Pierzchalski 
