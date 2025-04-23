@@ -9,7 +9,7 @@
  *             directories listed in PATH
  * @command: pointer to the command-line argument
  * Return: a pointer to string containing fullpath to the executable
- *         ot NULL if no command found or an error occurs
+ *         or NULL if no command found or an error occurs
  */
 char *find_path(const char *command)
 {

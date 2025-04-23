@@ -5,8 +5,8 @@
 /**
  * handle_builtin - checks and hnadles built-in commands: exit and env
  * @argv: array of argument strings(parsed from user input)
- * @line: input buffer to be freed if "exit" is called
- * @last_status: exit code to use if "exit" is called
+ * @line: the original input line(needs to be freed if exiting)
+ * @last_status: exit code to use if exiting
  * Return: 1 if the built-in command is handled
  *         otherwise 0
  */

@@ -5,10 +5,9 @@
 /**
  * build_full_path - constructs a full path to a command in a given directory
  * @dir: directory to look in
- * @command: command name
+ * @command: name of the executable file
  *
- * Return: a newly allocated string contain the full path if the file is
- *         executable, otherwise NULL
+ * Return: the complete path if it's executable, otherwise NULL
  */
 char *build_full_path(const char *dir, const char *command)
 {

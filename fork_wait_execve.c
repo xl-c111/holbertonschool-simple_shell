@@ -9,8 +9,9 @@
 /**
  * fork_wait_execve - forks a child process to execute external commands
  * @argv: array of strings representing command and its arguments
- * @command_path: full path to the command
- * @raw_status: a pointer to the raw exit status of the child process
+ * @command_path: full path to the executable command
+ * @raw_status: a pointer to an int where the raw exit status of
+ *              child process will be stored
  *
  * Return: in the child process, does not return if execve succeeds
  *         if execve fails, it prints an error and exits
