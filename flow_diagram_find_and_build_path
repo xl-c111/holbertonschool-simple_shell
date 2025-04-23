@@ -1,0 +1,14 @@
+    [ find_path ]
+          ↓
+  ┌──────────────────────────────────────────────┐
+  │ Reads PATH: "/usr/bin:/bin:/usr/local/bin"   │
+  │ Split → ["usr/bin", "bin", "usr/local/bin"]  │
+  └──────────────────────────────────────────────┘
+      ↓         ↓         ↓
+build_full_path build_full_path build_full_path
+      ↓         ↓         ↓
+ "/usr/bin/ls" "/bin/ls" "/usr/local/bin/ls"
+      ↓         ↓         ↓
+  executable?  executable?  executable?
+      ↓         ↓         ↓
+   return ✓      ✗           ✗
