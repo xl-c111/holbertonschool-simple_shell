@@ -1,73 +1,17 @@
-┌──────────────────────┐
-│        main()        │
-│  Start interactive   │
-│  shell loop          │
-└────────┬─────────────┘
-         │
-         ▼
-┌────────────────────────────────┐
-│  print_prompt()                │
-│  → print "$ " to stdout       │
-└────────┬──────────────────────┘
-         ▼
-┌──────────────────────────────────────────┐
-│ getline(&line, &len, stdin)              │
-│ → read full user input line (e.g. "ls")  │
-└────────┬─────────────────────────────────┘
-         ▼
-┌──────────────────────────────────────────────┐
-│ parse_line(line, argv[])                     │
-│ → split line into words                      │
-│ → store command in argv[0], arguments in     │
-│   argv[1...]                                 │
-└────────┬─────────────────────────────────────┘
-         ▼
-┌──────────────────────────────────────────────────────┐
-│ handle_builtin(argv, line, last_status)             │
-│ → if argv[0] == "exit", call exit(last_status)      │
-│ → if argv[0] == "env", print environment variables  │
-│ → if handled, return 1                              │
-└──────┬──────────────────────────────────────────────┘
-       │ (if not built-in) continue
-       ▼
-┌────────────────────────────────────────────────────┐
-│ find_path(argv[0])                                │
-│ → if argv[0] contains '/',                        │
-│     → check access(argv[0], X_OK)                 │
-│     → if executable, return strdup(argv[0])       │
-│ → else                                            │
-│     → getenv("PATH")                              │
-│     → e.g., "/usr/local/bin:/usr/bin:/bin"        │
-│     → split into tokens by ":"                    │
-│     → iterate tokens:                             │
-└──────┬────────────────────────────────────────────┘
-       ▼
-┌────────────────────────────────────────────────────────┐
-│ build_full_path(dir, command)                          │
-│ → concatenate dir + "/" + command                      │
-│   e.g., "/usr/bin" + "/" + "ls" = "/usr/bin/ls"        │
-│ → check access(fullpath, X_OK)                         │
-│ → if executable, return fullpath                       │
-│ → else free memory and return NULL                     │
-└────────────────────────────────────────────────────────┘
-          ▲ try next dir if NULL
-          │
-┌─────────┴──────────────┐
-│ fullpath returned to main │
-└─────────┬──────────────┘
-          ▼
-┌───────────────────────────────────────────────────────┐
-│ fork_wait_execve(argv, fullpath)                      │
-│ → fork a child process                                │
-│ → in child:                                           │
-│     → execve(fullpath, argv, environ)                 │
-│     → on fail: print error and exit(127)              │
-│ → in parent:                                          │
-│     → waitpid(child_pid, &status, 0)                  │
-│     → extract exit status using WIFEXITED + WEXITSTATUS │
-└────────────────────────────────────────────────────────┘
-          ▼
-┌─────────────────────────────┐
-│ Back to start of loop       │
-│ (print prompt again)        │
-└─────────────────────────────┘
+```mermaid
+flowchart TD
+    A[main()] --> B[print_prompt() <br> print "$ "]
+    B --> C[getline(&line, &len, stdin) <br> read user input]
+    C --> D[parse_line(line, argv[]) <br> split into command + args]
+    D --> E[handle_builtin(argv) <br> if 'exit', call exit() <br> if 'env', print env]
+    E -->|not built-in| F[find_path(argv[0])]
+    F --> G{command contains '/'}
+    G -->|Yes| H[check access(argv[0], X_OK) <br> if exec, return argv[0]]
+    G -->|No| I[getenv("PATH") <br> split by ":"]
+    I --> J[build_full_path(dir, command) <br> e.g., "/bin/ls"]
+    J --> K{access(fullpath, X_OK)?}
+    K -->|Yes| L[return fullpath]
+    K -->|No| M[try next dir in PATH]
+    L --> N[fork_wait_execve(argv, fullpath) <br> fork + execve()]
+    M --> J
+```
