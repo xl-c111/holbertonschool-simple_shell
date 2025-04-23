@@ -4,26 +4,25 @@
 #include <stdio.h>
 /**
  * build_full_path - constructs a full path to a command in a given directory
- * @dir: directory to look in
- * @command: command name
+ * @dir: directory (folder path) to look in(dir is from strtok(copy_path, ":"))
+ * @command: name of executable file
  *
- * Return: a newly allocated string contain the full path if the file is
- *         executable, otherwise NULL
+ * Return: the complate path is it's executable, otherwise NULL
  */
 char *build_full_path(const char *dir, const char *command)
 {
-	char *fullpath;
-	size_t len;
+	char *fullpath;      /* a ptr to the new path string */
+	size_t len;          /* length of combined path */
 
-       	len = strlen(dir) + strlen(command) + 2;
+       	len = strlen(dir) + strlen(command) + 2;     /* one for slash between directory and command, one for '\0' */
 	fullpath = malloc(len);
 
 	if (fullpath == NULL)
 		return (NULL);
 
-	snprintf(fullpath, len, "%s/%s", dir, command);
+	snprintf(fullpath, len, "%s/%s", dir, command);     /* format the string dir/command into the allocated memory */
 
-	if (access(fullpath, X_OK) == 0)
+	if (access(fullpath, X_OK) == 0)      /* check if the file at the fullpath is executable */
 		return (fullpath);
 
 	free(fullpath);
