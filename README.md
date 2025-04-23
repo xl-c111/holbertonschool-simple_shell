@@ -58,7 +58,9 @@ julien@ubuntu:/#
 ```
 ## Exit Status
 * Returns `0` if a command executes successfully
-* Returns a non-zero value if an error occurs during command execution or built-in handling
+* Returns `127` if a command is not found
+* Returns `1` if a command fails abnormally
+* Returns the exit status of the last executed command
 ## File Structure
 | File                   | Description                                                                    |
 |------------------------|--------------------------------------------------------------------------------|
