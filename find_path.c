@@ -10,6 +10,14 @@
  * @command: pointer to the command-line argument (from parsed tokens, argv[0] is passed to find_path)
  * Return: a pointer to string containing fullpath to the executable
  *         or NULL if no command found or an error occurs
+ *
+ * Description: - validate command 
+ *              - strchr(command, '/') to check if user already gave a path, 
+ *                           if command contains a ‘/’, means user input a full or relative path, so don't need to search in PATH
+ *              - _getenv to get the PATH environment variable 
+ *              - strdup() to get a copy_path for modifying
+ *              - strtok() plit the PATH by colon to get each directory
+ *
  */
 char *find_path(const char *command)
 {
@@ -21,9 +29,9 @@ char *find_path(const char *command)
 	if (command == NULL || *command == '\0')  /* if command is NULL or empty */
 		return (NULL);
 
-	if (strchr(command, '/'))                 /* if the command contains a slash, check if it's executable */
+	if (strchr(command, '/'))             /* check if user already gave a path, in this case, skip searching in PATH */
 	{
-		if (access(command, X_OK) == 0)
+		if (access(command, X_OK) == 0)        /* check if it's executable */
 			return (strdup(command));      /* if so, returns a modifiable copy */
 		fprintf(stderr, "./hsh: 1: %s: not found\n", command);
 		return (NULL);
