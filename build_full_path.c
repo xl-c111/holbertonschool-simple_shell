@@ -7,7 +7,11 @@
  * @dir: directory (folder path) to look in(dir is from strtok(copy_path, ":"))
  * @command: name of executable file
  *
- * Return: the complate path is it's executable, otherwise NULL
+ * Return: the complete path is it's executable, otherwise NULL
+ *
+ * Description: - combines each directory with the first token of user input(command name) to get the full path
+ *              - check if the file at the full path is executable
+ *
  */
 char *build_full_path(const char *dir, const char *command)
 {
