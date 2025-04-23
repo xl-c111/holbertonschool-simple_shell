@@ -8,8 +8,9 @@
 #include "shell.h"
 /**
  * main - entry point for the simple_shell program
- * Return: - 127 if command was not found
- *         - 0 if exited via the built-in 'exit' command without error
+ * Return: - 0 if exited via the built-in 'exit' command without error
+ *         - 1 if a command terminated abnormally
+ *         - 127 if command was not found
  *         - or the exit status of the last executed command
  */
 int main(void)
@@ -29,9 +30,11 @@ int main(void)
 			break;
 		if (bytes_read > 0 && line[bytes_read - 1] == '\n')
 			line[bytes_read - 1] = '\0';
+
 		argc = parse_line(line, argv);
 		if (argc == 0)
 			continue;
+
 		if (handle_builtin(argv, line, last_status))
 			continue;
 		command_path = find_path(argv[0]);
@@ -44,7 +47,6 @@ int main(void)
 
 		fork_wait_execve(argv, command_path, &raw_status);
 		free(command_path);
-
 		if (WIFEXITED(raw_status))
 			status = WEXITSTATUS(raw_status);
 		else

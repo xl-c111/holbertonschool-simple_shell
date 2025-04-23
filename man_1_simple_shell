@@ -1,0 +1,117 @@
+.TH HSH 1 "April 2025" "Holberton Project" "User Commands"
+.SH NAME
+hsh \- a simple UNIX command line interpreter
+.SH SYNOPSIS
+.B ./hsh
+.RI [ inputfile ]
+.SH DESCRIPTION
+.B hsh
+is a basic UNIX shell written in C, mimicking essential features of
+.BR /bin/sh .
+It operates in both interactive and non-interactive modes, allowing execution of both built-in and external commands.
+
+.SH FEATURES
+.TP
+.B Prompt
+Displays a shell prompt \fB($)\fR when running interactively.
+.TP
+.B Command Parsing
+Accepts and tokenizes command lines with or without arguments.
+.TP
+.B Non-Interactive Mode
+Can execute commands from piped input or files, suitable for scripting.
+.TP
+.B Built-in Commands
+\fBexit\fR – exits the shell  
+\fBenv\fR – prints the current environment
+.TP
+.B External Commands
+Searches and executes commands using directories listed in the \fBPATH\fR environment variable.
+.TP
+.B Error Handling
+Handles invalid commands, unknown programs, and supports EOF (e.g., Ctrl+D) gracefully.
+.TP
+.B Memory Safety
+Designed with care to avoid memory leaks.
+
+.SH EXIT STATUS
+Returns one of the following values:
+.TP
+.B 0
+If a command or built-in executes successfully.
+.TP
+.B 127
+If a command is not found in \fBPATH\fR.
+.TP
+.B 1
+If a command fails abnormally (e.g., due to signal).
+.TP
+.B N
+The actual exit status \fIN\fR of the last executed external command.
+
+.SH USAGE
+.SS Interactive Mode
+Run:
+.EX
+./hsh
+.EE
+Then enter commands at the prompt:
+.EX
+($) ls
+($) exit
+.EE
+
+.SS Non-Interactive Mode
+Run with piped input or file redirection:
+.EX
+echo "ls -l" | ./hsh
+cat commands.txt | ./hsh
+.EE
+
+.SH COMPILATION
+To compile the shell:
+.EX
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+.EE
+
+.SH FILES
+.TP
+.B simple_shell.c
+Main loop and core shell logic
+.TP
+.B print_prompt.c
+Displays the prompt for interactive use
+.TP
+.B fork_wait_execve.c
+Handles forking and executing external commands
+.TP
+.B parse_line.c
+Parses input into tokens
+.TP
+.B find_path.c
+Locates commands using \fBPATH\fR
+.TP
+.B handle_builtin.c
+Implements \fBexit\fR and \fBenv\fR built-ins
+.TP
+.B shell.h
+Header file with declarations and macros
+
+.SH ENVIRONMENT
+The shell uses standard environment variables and inherits the environment from its parent process.  
+The \fBPATH\fR variable is critical for locating external commands.
+
+.SH AUTHORS
+Xiaoling Cui  
+Faduma Abdihashi  
+Adam Pierzchalski  
+See the AUTHORS file for full contributor details.
+
+.SH SEE ALSO
+.BR sh (1),
+.BR bash (1),
+.BR execve (2),
+.BR getenv (3),
+.BR fork (2),
+.BR exit (3)
+
