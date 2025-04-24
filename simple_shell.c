@@ -39,7 +39,7 @@
 int main(void)
 {
 	char *line = NULL;        /* user input line */
-	char **argv[MAX_ARGS];    /* to store the parsed command and its arguments*/
+	char *argv[MAX_ARGS];    /* to store the parsed command and its arguments*/
 	char *command_path;       /* the full path to the executable */
 	size_t len = 0;           /* used for getline, current size of the line buffer */
 	ssize_t bytes_read;       /* number of chars read by getline */
