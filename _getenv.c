@@ -20,7 +20,7 @@ char *_getenv(const char *name)
 	{
 		if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
 		{
-			return (&environ[i][len + 1]); /* return the ptr to the value of string */
+			return (&environ[i][len + 1]);
 		}
 		i++;
 	}

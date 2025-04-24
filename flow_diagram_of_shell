@@ -36,7 +36,7 @@
 │     → check access(argv[0], X_OK)                 │
 │     → if executable, return strdup(argv[0])       │
 │ → else                                            │
-│     → getenv("PATH")                              │
+│     → _getenv("PATH")                              │
 │     → e.g., "/usr/local/bin:/usr/bin:/bin"        │
 │     → split into tokens by ":"                    │
 │     → iterate tokens:                             │
