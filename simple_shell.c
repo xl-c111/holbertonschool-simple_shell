@@ -29,6 +29,12 @@
  * 3, argv is used to stored the parsed command and its arguments from user input
  *         so argv[0] is the actual command name(the first token parsed) like ls, echo, cat...
  *    argc is the number of parsed tokens( if (argc == 0) check if user just hit the ENTER button and doesn't input anything)
+ *
+ * 4, status: updates after command runs, it reflects the current command result 
+ *    last_status: updates after any command(built-in or not), used for passing to exit() to get correct return code.
+ *                 exit() only works if the last command was an external command. 
+ *                 exit(last_status) reflects the most meaningful outcome, whether it's built-in or external
+ *
  */
 int main(void)
 {
