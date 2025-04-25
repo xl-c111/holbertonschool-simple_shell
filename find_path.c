@@ -35,7 +35,6 @@ char *find_path(const char *command)
 	if (copy_path == NULL)
 	{
 		perror("strdup");
-		free(copy_path);
 		return (NULL);
 	}
 	token = strtok(copy_path, ":");

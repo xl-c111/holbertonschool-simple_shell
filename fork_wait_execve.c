@@ -27,7 +27,6 @@ void fork_wait_execve(char *argv[], char *command_path, int *raw_status)
 	if (pid == -1)
 	{
 		perror("fork");
-		free(command_path);
 		return;
 	}
 
@@ -40,6 +39,5 @@ void fork_wait_execve(char *argv[], char *command_path, int *raw_status)
 	else
 	{
 		waitpid(pid, raw_status, 0);
-		free(command_path);
 	}
 }
