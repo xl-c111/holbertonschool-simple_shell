@@ -46,7 +46,6 @@ char *find_path(const char *command)
 	if (copy_path == NULL)
 	{
 		perror("strdup");              /* if strdup fails, print error and return NULL */
-		free(copy_path);
 		return (NULL);
 	}
 	token = strtok(copy_path, ":");       /* split the PATH by colon to get individual directory */

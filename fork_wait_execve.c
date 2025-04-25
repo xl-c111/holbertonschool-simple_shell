@@ -41,7 +41,6 @@ void fork_wait_execve(char *argv[], char *command_path, int *raw_status)
 	if (pid == -1)         /* check if fork failed */
 	{
 		perror("fork");
-		free(command_path);      /* clean up the memory */
 		return;
 	}
 
@@ -56,6 +55,5 @@ void fork_wait_execve(char *argv[], char *command_path, int *raw_status)
 	else                                /* this block is executed in parent process */
 	{
 		waitpid(pid, raw_status, 0);  /* wait for the child process to terminate, store its status in raw_status*/
-		free(command_path);
 	}
 }
