@@ -38,8 +38,8 @@
 │ → else                                            │
 │     → _getenv("PATH")                             │
 │     → e.g., "/usr/local/bin:/usr/bin:/bin"        │
-│     → split into tokens by ":"                    │
-│     → iterate tokens:                             │
+│     → split into individual directories by ":"    │
+│     → iterate directories:                        │
 └──────┬────────────────────────────────────────────┘
        ▼
 ┌─────────────────────────────────────────────────────────────┐
